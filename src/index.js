@@ -1,16 +1,9 @@
-import express from "express";
+import { app } from "./app.js";
 import dotenv from "dotenv";
 import connectDB from "./db/index.js";
 
-// Initialize dotenv
-dotenv.config({
-    path: './.env'
-});
+dotenv.config({ path: "./.env" });
 
-// Initialize Express app
-const app = express();
-
-// Connect to MongoDB and start the server
 connectDB()
     .then(() => {
         app.listen(process.env.PORT || 3000, () => {
