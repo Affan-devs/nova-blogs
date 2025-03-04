@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema(
         },
         avatar: {
             type: String, // cloudinary url
-            required: true,
+            // required: true,
         },
         coverImage: {
             type: String, // cloudinary url
@@ -63,24 +63,28 @@ userSchema.methods.isPasswordMatch = async function(password) {
 }
 
 userSchema.methods.AccessToken = function() {
-    JasonWebToken.sign= {
+    return jwt.sign=(
+     {
         _id: this._id,
         username: this.username,
         email: this.email,
-    },
+        },
     process.env.ACCESS_TOKEN,
 {
     expiresIn: process.env.ACCESS_TOKEN_EXPIRY
 }
+    )
 }
 
 userSchema.methods.RefreshToken = function() {
-    JasonWebToken.sign= {
+    jwt.sign=(
+     {
         _id: this._id,
     },
     process.env.REFERSH_TOKEN,
 {
     expiresIn: process.env.REFERSH_TOKEN_EXPIRY
-}
-}
+        }
+     )
+    }
  export const  User = mongoose.model(`users`, userSchema)
